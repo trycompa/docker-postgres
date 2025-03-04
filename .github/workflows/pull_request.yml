@@ -1,0 +1,12 @@
+name: pr
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  docker:
+    name: docker
+    uses: ./.github/workflows/_docker.yml
+    with:
+      tag: 14-${{ github.sha }}

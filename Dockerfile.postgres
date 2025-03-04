@@ -1,0 +1,22 @@
+# Same major version as production
+FROM imresamu/postgis:14-3.4
+LABEL org.opencontainers.image.source="https://github.com/trycompa/docker-postgres"
+
+
+# Install build dependencies and pgvector
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    git \
+    postgresql-server-dev-14 \
+    && git clone --branch v0.5.1 https://github.com/pgvector/pgvector.git \
+    && cd pgvector \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -rf pgvector \
+    && apt-get remove -y build-essential git postgresql-server-dev-14 \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# log all queries
+CMD ["postgres", "-c", "log_statement=all"]
