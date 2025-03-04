@@ -1,0 +1,13 @@
+name: main
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  docker:
+    name: docker
+    uses: ./.github/workflows/_docker.yml
+    with:
+      tag: '14'
