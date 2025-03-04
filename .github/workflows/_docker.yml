@@ -1,0 +1,34 @@
+name: ~ build
+
+on:
+  workflow_call:
+    secrets:
+      GITHUB_TOKEN:
+        required: true
+    inputs:
+      tag:
+        type: string
+        required: true
+
+jobs:
+  builder:
+    name: builder image
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout GitHub Action'
+        uses: actions/checkout@main
+
+      - name: 'Login to GitHub Container Registry'
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Build Postgres Image'
+        run: |
+          docker build \
+            -f Dockerfile.postgres \
+            --platform linux/amd64 \
+            -t ghcr.io/trycompa/postgres:${{ inputs.tag }} .
+          docker push ghcr.io/trycompa/postgres:${{ inputs.tag }}
