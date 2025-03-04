@@ -10,5 +10,3 @@ jobs:
     uses: ./.github/workflows/_docker.yml
     with:
       tag: 14-${{ github.sha }}
-    secrets:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
