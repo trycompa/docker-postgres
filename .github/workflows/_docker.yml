@@ -10,7 +10,6 @@ on:
 jobs:
   builder:
     name: builder image
-    runs-on: self-hosted
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main
