@@ -24,8 +24,8 @@ jobs:
 
       - name: 'Build Postgres Image'
         run: |
-          docker build \
+          docker buildx build \
             -f Dockerfile.postgres \
-            --platform linux/amd64 \
+            --platform linux/amd64,linux/arm64 \
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }} .
           docker push ghcr.io/trycompa/postgres:${{ inputs.tag }}
