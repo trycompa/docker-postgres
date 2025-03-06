@@ -30,7 +30,7 @@ jobs:
           docker build \
             -f Dockerfile.postgres \
             --platform linux/amd64 \
-            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux/amd64 \
+            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-amd64 \
             --push .
 
       - name: 'Build Postgres Image for linux/arm64'
@@ -38,7 +38,7 @@ jobs:
           docker build \
             -f Dockerfile.postgres \
             --platform linux/arm64 \
-            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux/arm64 \
+            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-arm64 \
             --push .
 
       - name: 'Build Postgres Multi-Architecture Image'
