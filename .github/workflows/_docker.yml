@@ -33,7 +33,7 @@ jobs:
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-amd64 \
             --push .
 
-      - name: 'Build Postgres Multi-Architecture Image'
+      - name: 'Build Postgres Image for linux/arm64'
         run: |
           docker buildx build \
             -f Dockerfile.postgres \
