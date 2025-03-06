@@ -25,7 +25,23 @@ jobs:
       - name: 'Set up Docker Buildx'
         uses: docker/setup-buildx-action@v3
 
-      - name: 'Build Postgres Image'
+      - name: 'Build Postgres Image for linux/amd64'
+        run: |
+          docker build \
+            -f Dockerfile.postgres \
+            --platform linux/amd64 \
+            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux/amd64 \
+            --push .
+
+      - name: 'Build Postgres Image for linux/arm64'
+        run: |
+          docker build \
+            -f Dockerfile.postgres \
+            --platform linux/arm64 \
+            -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux/arm64 \
+            --push .
+
+      - name: 'Build Postgres Multi-Architecture Image'
         run: |
           docker buildx build \
             -f Dockerfile.postgres \
