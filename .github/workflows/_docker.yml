@@ -3,6 +3,9 @@ name: ~ build
 on:
   workflow_call:
     inputs:
+      version:
+        type: string
+        required: true
       tag:
         type: string
         required: true
@@ -28,7 +31,7 @@ jobs:
       - name: 'Build Postgres Image for linux/amd64'
         run: |
           docker build \
-            -f Dockerfile.postgres \
+            -f Dockerfile${{ inputs.version }}.postgres \
             --platform linux/amd64 \
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-amd64 \
             --push .
@@ -36,7 +39,7 @@ jobs:
       - name: 'Build Postgres Image for linux/arm64'
         run: |
           docker buildx build \
-            -f Dockerfile.postgres \
+            -f Dockerfile${{ inputs.version }}.postgres \
             --platform linux/arm64 \
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-arm64 \
             --push .
@@ -44,7 +47,7 @@ jobs:
       - name: 'Build Postgres Multi-Architecture Image'
         run: |
           docker buildx build \
-            -f Dockerfile.postgres \
+            -f Dockerfile${{ inputs.version }}.postgres \
             --platform linux/amd64,linux/arm64 \
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }} \
             --push .
