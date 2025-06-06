@@ -8,6 +8,10 @@ on:
 jobs:
   docker:
     name: docker
+    strategy:
+      matrix:
+        version: [14, 15, 16]
     uses: ./.github/workflows/_docker.yml
     with:
-      tag: '14'
+      version: "${{ matrix.version }}"
+      tag: "${{ matrix.version }}"
