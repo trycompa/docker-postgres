@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y \
     postgresql-server-dev-16 \
     && git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git \
     && cd pgvector \
-    && make \
+    && make OPTFLAGS="" \
     && make install \
     && cd .. \
     && rm -rf pgvector \
