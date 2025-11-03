@@ -30,7 +30,7 @@ jobs:
 
       - name: 'Build Postgres Image for linux/amd64'
         run: |
-          docker build \
+          docker buildx build \
             -f Dockerfile${{ inputs.version }}.postgres \
             --platform linux/amd64 \
             -t ghcr.io/trycompa/postgres:${{ inputs.tag }}-linux-amd64 \

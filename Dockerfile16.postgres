@@ -1,5 +1,5 @@
 # Same major version as production
-FROM imresamu/postgis:16-3.4
+FROM imresamu/postgis:16-3.4.3-bookworm
 LABEL org.opencontainers.image.source="https://github.com/trycompa/docker-postgres"
 
 
