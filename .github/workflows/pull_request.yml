@@ -9,7 +9,7 @@ jobs:
     name: docker
     strategy:
       matrix:
-        version: [14, 15, 16]
+        version: [16, 17]
     uses: ./.github/workflows/_docker.yml
     with:
       version: "${{ matrix.version }}"
