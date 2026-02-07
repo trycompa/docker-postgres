@@ -5,7 +5,7 @@ ROOT="$( cd "$( dirname "${BASH_SOURCE[0]}" )/" &> /dev/null && pwd )"
 
 cd "$ROOT"
 
-versions=("16" "17")
+versions=("17" "18")
 
 for version in "${versions[@]}"; do
   # linux/amd64
