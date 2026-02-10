@@ -13,7 +13,7 @@ on:
 jobs:
   builder:
     name: builder image
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - name: 'Checkout GitHub Action'
         uses: actions/checkout@main

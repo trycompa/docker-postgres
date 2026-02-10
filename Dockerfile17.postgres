@@ -19,4 +19,4 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # log all queries
-CMD ["postgres", "-c", "log_statement=all"]
+CMD ["postgres"]

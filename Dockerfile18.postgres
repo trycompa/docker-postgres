@@ -1,5 +1,5 @@
 # Same major version as production
-FROM imresamu/postgis:16-3.4.3-bookworm
+FROM imresamu/postgis:18-3.6.0-bookworm
 LABEL org.opencontainers.image.source="https://github.com/trycompa/docker-postgres"
 
 
@@ -7,16 +7,16 @@ LABEL org.opencontainers.image.source="https://github.com/trycompa/docker-postgr
 RUN apt-get update && apt-get install -y \
     build-essential \
     git \
-    postgresql-server-dev-16 \
-    && git clone --branch v0.8.0 https://github.com/pgvector/pgvector.git \
+    postgresql-server-dev-18 \
+    && git clone --branch v0.8.1 https://github.com/pgvector/pgvector.git \
     && cd pgvector \
     && make OPTFLAGS="" \
     && make install \
     && cd .. \
     && rm -rf pgvector \
-    && apt-get remove -y build-essential git postgresql-server-dev-16 \
+    && apt-get remove -y build-essential git postgresql-server-dev-18 \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
 # log all queries
-CMD ["postgres", "-c", "log_statement=all"]
+CMD ["postgres"]
