@@ -18,5 +18,8 @@ RUN apt-get update && apt-get install -y \
     && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
 
-# log all queries
+# Entrypoints to enable extensions
+COPY initdb-pgvector.sh /docker-entrypoint-initdb.d/20_pgvector.sh
+COPY initdb-fuzzystrmatch.sh /docker-entrypoint-initdb.d/30_fuzzystrmatch.sh
+
 CMD ["postgres"]
